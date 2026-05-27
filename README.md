@@ -11,32 +11,20 @@ My personal collection of agent skills. Each skill lives in `skills/<name>/` and
 
 ## Install
 
-Install all skills from this repository with the Skills CLI:
+Install all skills globally from this repository with the Skills CLI:
 
 ```sh
-npx skills add rburmorrison/skills
+npx skills add rburmorrison/skills --global
 ```
 
-Install one skill by name:
+Omit `--global` from any command to install skills for the current project instead.
+
+Install one skill globally by name:
 
 ```sh
-npx skills add rburmorrison/skills --skill planning
-npx skills add rburmorrison/skills --skill feature-stubbing
-npx skills add rburmorrison/skills --skill code-review
-npx skills add rburmorrison/skills --skill gitmoji-commits
+npx skills add rburmorrison/skills --skill planning --global
+npx skills add rburmorrison/skills --skill feature-stubbing --global
+npx skills add rburmorrison/skills --skill code-review --global
+npx skills add rburmorrison/skills --skill gitmoji-commits --global
 ```
 
-You can also install directly from the Git URL:
-
-```sh
-npx skills add git@github.com:rburmorrison/skills.git
-```
-
-Or install a specific skill globally:
-
-```sh
-npx skills add git@github.com:rburmorrison/skills.git --skill planning --global
-npx skills add git@github.com:rburmorrison/skills.git --skill feature-stubbing --global
-npx skills add git@github.com:rburmorrison/skills.git --skill code-review --global
-npx skills add git@github.com:rburmorrison/skills.git --skill gitmoji-commits --global
-```
