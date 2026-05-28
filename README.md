@@ -14,7 +14,7 @@ My personal collection of agent skills. Each skill lives in `skills/<name>/` and
 Install all skills globally from this repository with the Skills CLI:
 
 ```sh
-npx skills add rburmorrison/skills --global
+npx skills add rburmorrison/agent-skills --global
 ```
 
 Omit `--global` from any command to install skills for the current project instead.
@@ -22,9 +22,9 @@ Omit `--global` from any command to install skills for the current project inste
 Install one skill globally by name:
 
 ```sh
-npx skills add rburmorrison/skills --skill planning --global
-npx skills add rburmorrison/skills --skill feature-stubbing --global
-npx skills add rburmorrison/skills --skill code-review --global
-npx skills add rburmorrison/skills --skill gitmoji-commits --global
+npx skills add rburmorrison/agent-skills --skill planning --global
+npx skills add rburmorrison/agent-skills --skill feature-stubbing --global
+npx skills add rburmorrison/agent-skills --skill code-review --global
+npx skills add rburmorrison/agent-skills --skill gitmoji-commits --global
 ```
 
