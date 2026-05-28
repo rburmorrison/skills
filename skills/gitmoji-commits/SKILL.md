@@ -9,9 +9,12 @@ Use this skill when the user asks you to write, revise, or choose a Gitmoji comm
 
 ## Output Contract
 
-When the user asks only for a commit message, return only the commit message unless they explicitly ask for explanation or alternatives.
+There are two distinct output modes. Choose the mode from the user's request and follow it exactly:
 
-When the user asks you to make commits, do not commit immediately. First write all proposed commits to the user using the formats in [Commit Proposals](#commit-proposals), then wait for explicit approval before making any commits.
+1. **Commit message only**: When the user asks only for a commit message, return only the commit message unless they explicitly ask for explanation or alternatives.
+2. **Commit proposal**: When the user asks you to make commits, do not output only the commit message. Do not commit immediately. First write all proposed commits to the user using the full surrounding text and file list formats in [Commit Proposals](#commit-proposals), then wait for explicit approval before making any commits.
+
+The commit proposal format is mandatory. Even if other instructions say to return only the commit message, that applies only to commit-message-only requests and must not override the proposal format when the user asks you to commit changes.
 
 Use this subject format:
 
@@ -46,7 +49,7 @@ Rules:
    - Do not split a file across commits unless the user explicitly asks for partial staging.
 5. Select the closest Gitmoji shortcode for each proposed commit from the reference below.
 6. If the user asked only for a commit message, return the final commit message only.
-7. If the user asked you to make commits, show the commit proposal first using the required format below and wait for explicit approval before running any committing commands.
+7. If the user asked you to make commits, show the complete commit proposal first using the required format below and wait for explicit approval before running any committing commands. Do not reduce the proposal to a bare `:shortcode: Message` line.
 
 If multiple shortcodes could apply, prefer the one that best describes the main purpose. For example, a bug fix that also updates tests should use `:bug:`, not `:white_check_mark:`. Use `:white_check_mark:` only when the primary purpose is changing tests.
 
@@ -62,7 +65,9 @@ For this user's preferred style, always use the shortcode intention and omit sco
 
 ## Commit Proposals
 
-When the user asks you to commit changes, always propose the commit or commits before making them.
+When the user asks you to commit changes, always propose the commit or commits before making them. This section defines the exact user-facing output required before approval.
+
+Do not omit the introductory sentence, bullet list, file list, or closing approval prompt. The response must include the surrounding text shown below, not just the commit subject.
 
 Use this format for multiple commits:
 
