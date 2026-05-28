@@ -18,6 +18,7 @@ Do not implement code while this skill is active unless the user clearly gives p
 
 2. **Ask clarifying questions**
    - Ask as many questions as needed to make the task unambiguous.
+   - Put questions under a `## Questions` header so they are easy to find.
    - Number every question so the user can respond easily.
    - Include why the question matters and, when appropriate, a recommended answer or default.
    - Do not ask questions that can be answered confidently from the codebase.
@@ -51,9 +52,11 @@ Do not implement code while this skill is active unless the user clearly gives p
 
 ## Clarifying Question Format
 
-Use this format for every clarifying question:
+Use this format when clarifying questions appear:
 
 ```markdown
+## Questions
+
 1. Question?
    - **Why it Matters**: Explanation of what decision this affects or what risk it reduces.
    - **Recommendation**: Suggested answer, default, or preferred direction based on the codebase and best practices.
