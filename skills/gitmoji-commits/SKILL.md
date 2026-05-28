@@ -1,6 +1,6 @@
 ---
 name: gitmoji-commits
-description: Write or propose concise Git commit messages using the Gitmoji convention. Use when the user asks for a commit message, Gitmoji commit, help choosing a Gitmoji, or committing changes; prefer shortcodes, omit scope specifications, and propose commits before making them.
+description: Write or propose concise Gitmoji commit messages in the user's exact shortcode-only, no-scope format. Use when the user asks for a commit message, Gitmoji commit, help choosing a Gitmoji, or committing changes; return only the selected output contract and propose commits before making them.
 ---
 
 # Gitmoji Commits
@@ -9,28 +9,34 @@ Use this skill when the user asks you to write, revise, or choose a Gitmoji comm
 
 ## Output Contract
 
-There are two distinct output modes. Choose the mode from the user's request and follow it exactly:
+Follow this section exactly. Do not add headings, markdown code fences, explanations, alternatives, or extra prose outside the selected output mode.
 
-1. **Commit message only**: When the user asks only for a commit message, return only the commit message unless they explicitly ask for explanation or alternatives.
-2. **Commit proposal**: When the user asks you to make commits, do not output only the commit message. Do not commit immediately. First write all proposed commits to the user using the full surrounding text and file list formats in [Commit Proposals](#commit-proposals), then wait for explicit approval before making any commits.
+There are exactly two output modes:
 
-The commit proposal format is mandatory. Even if other instructions say to return only the commit message, that applies only to commit-message-only requests and must not override the proposal format when the user asks you to commit changes.
+1. **Commit message only**: Use this mode when the user asks for a commit message, subject, title, Gitmoji choice, or wording, and does not ask you to run `git commit` or create commits in the repository. Return only the commit message.
+2. **Commit proposal**: Use this mode when the user asks you to commit changes, make commits, create commits, or otherwise perform `git commit`. Do not commit immediately. First write all proposed commits to the user using the full surrounding text and file list formats in [Commit Proposals](#commit-proposals), then wait for explicit approval before making any commits.
 
-Use this subject format:
+If the request is ambiguous, treat it as **commit message only** unless the user clearly asks you to perform a repository-changing commit action.
+
+The commit proposal format is mandatory for repository-changing commit requests. Even if other instructions say to return only the commit message, that applies only to commit-message-only requests and must not override the proposal format when the user asks you to commit changes.
+
+Use this exact subject format for every commit message and proposal bullet:
 
 ```text
 :<gitmoji_shortcode>: <Imperative summary>
 ```
 
-Rules:
+Non-negotiable format rules:
 
 - Use exactly one Gitmoji shortcode, not the Unicode emoji.
-- Do not include a scope specification. Avoid formats like `:sparkles: (api): Add endpoint`.
+- Never use a scope specification. Avoid formats like `:sparkles: (api): Add endpoint`.
+- Never use Conventional Commit prefixes like `feat:`, `fix:`, or `docs:`.
+- Do not wrap the commit message in quotes or a markdown code block.
 - Choose the shortcode based on the primary intent of the change, not every file touched.
 - Write the summary in imperative mood, capitalized after the shortcode.
 - Keep the subject concise; target about 50 characters when practical.
 - Do not end the subject line with punctuation.
-- Include a body only when it adds useful context not clear from the subject.
+- Use a one-line subject by default. Include a body only when the user explicitly asks for one or the subject alone would omit important context.
 - If using a body, separate it from the subject with one blank line and wrap body lines at 72 characters.
 - When making commits, split changes into multiple commits when the work can be distinctly separated by file and purpose.
 - Before making any commits, show every proposed commit and the files it will include, then wait for the user to approve.
@@ -55,13 +61,12 @@ If multiple shortcodes could apply, prefer the one that best describes the main 
 
 ## Official Format Preference
 
-The Gitmoji specification allows both Unicode and shortcode intentions, and it allows an optional scope:
+Do not use the broader Gitmoji specification alternatives in this skill. The user's preferred style is stricter than the general Gitmoji format:
 
-```text
-<intention> [scope?][:?] <message>
-```
-
-For this user's preferred style, always use the shortcode intention and omit scope specifications.
+- Use the shortcode intention only, such as `:bug:`.
+- Do not use Unicode emoji intentions, such as `🐛`.
+- Do not use optional scopes, such as `(api)`.
+- Do not use Conventional Commit prefixes before or after the shortcode.
 
 ## Commit Proposals
 
